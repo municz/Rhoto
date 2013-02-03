@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @album.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @album.description %>
+</p>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    
+    <th></th>
+    <th></th>
+  </tr>
+<% @photos.each do |photo| %>
+	<tr>
+		<td><%= photo.title %></td>
+		<td><%= photo.description %></td>
+		
+		<td><%= link_to 'detail', album_photo_path(@album, photo) %></td>
+		<td><%= link_to 'Destroy', album_photo_path(@album,photo), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+	</tr>
+<% end %>
+
+<%= link_to 'Add new photo', new_album_photo_path(@album) %> |
+<%= link_to 'Edit', edit_album_path(@album) %> |
+<%= link_to 'Back', albums_path %>

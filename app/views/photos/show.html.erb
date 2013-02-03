@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @photo.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @photo.description %>
+</p>
+
+<p>
+  <b>image address:</b>
+  <%= @photo.image_file_name %>
+</p>
+
+<p>
+  <b>image:</b>
+  <%= image_tag @photo.image.url(:large) %>
+</p>
+
+<hr>
+ 
+<h2>Komentáře</h2>
+
+
+<% @comments.each do |comment| %>
+  <p><strong><%= comment.title %></strong><br>
+    <%= comment.created_at.to_s %> napsal <strong><%= comment.user %></strong>:
+    <q><%= comment.content %></q>
+  </p>
+
+<% 
+ end %>
+ 
+<hr>
+<% if @comment then %>
+	<% @comment.errors.full_messages.each do |error| %>
+    <p id="error_explanation"><%= error %></p>
+  <% end %>
+<% end %>
+<h2>Přidat komentář:</h2>
+<%= form_for [@album,@photo,@new_comment] do |f| %>
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </div>
+    <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_album_photo_path(@album, @photo) %> |
+<%= link_to 'Back', album_path(@album) %>
