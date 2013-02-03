@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-before_filter :authenticate_user!, :except=>[:update,:destroy]
+before_filter :authenticate_user!, :except=>[:create]
   # GET /comments
   # GET /comments.json
   # POST /comments
@@ -19,7 +19,7 @@ before_filter :authenticate_user!, :except=>[:update,:destroy]
        
       else
         format.html { render "photos/show" }
-        #format.json { render :json => @comment.errors.full_messages.to_sentence, :status => :unprocessable_entity }
+        format.json { render :json => @comment, :status => :unprocessable_entity }
       end
     end
 

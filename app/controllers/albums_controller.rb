@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
   
-  before_filter :authenticate_user!, :except =>[:index,:show]
+ # before_filter :authenticate_user!, :except =>[:index,:show]
   # GET /albums
   # GET /albums.json
   def index
