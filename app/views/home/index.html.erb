@@ -1,14 +1,19 @@
-<h1>Rhoto</h1>
-<%= link_to 'Albums', albums_path %>
+<h1>Name of this awesome gallery</h1>
+<p><strong>Rhoto</strong> is simple and open-source photo gallery programmed by Chrobakos utilizing Ruby on Rails, Bootstrap, Devise, Paperclip and knockoutJS.</p>
+<p>It has simple administration and offers managing photos and albums.</p>
 <p>
+
 	<%
 	if user_signed_in? then
 	%>
-		<%= link_to "My account", edit_user_registration_path %><br>
+		<%= link_to('Register', new_user_path)  %><br>
+		
 		<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 		
     
 	<% else %>
-		<%= link_to('Login', new_user_session_path)  %>
+		<div class='btn'>
+			<%= link_to('Login', new_user_session_path)  %>
+		</div>
 	<% end %>
 </p>

@@ -12,14 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
+<% if params[:action] == 'edit' %>
+  <div class="field">
+    <%= f.label :Cover %>
+    <%= f.select :Cover, @photos.map{ |c| [c.title, c.id] } %>
+  </div>
+<% end %>
+  
   <div class="actions">
-    <%= f.submit %>
+     <%= f.submit "Submit", :class => 'btn' %>
   </div>
 <% end %>

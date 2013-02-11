@@ -1,25 +1,36 @@
-<h1>Listing albums</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<h1>Albums</h1>
+  <% if user_signed_in? then %>
+    <div class='btn'>
+      <%= link_to 'New Album', new_album_path %>
+    </div>
+    <br>
+  <% end %>
+<div class='thumbnails'>
 <% @albums.each do |album| %>
-  <tr>
-    <td><%= album.name %></td>
-    <td><%= album.description %></td>
-    <td><%= link_to 'Show', album %></td>
-    <td><%= link_to 'Edit', edit_album_path(album) %></td>
-    <td><%= link_to 'Destroy', album, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
+  <div class='thumbnail'>
+    
+    <% if user_signed_in? then %>
+        <div class='admin'>
+          <%= link_to 'Edit', edit_album_path(album) %><br>
+          <%= link_to 'Destroy', album, :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+        </div>
+    <% end %>
+
+    <%  
+    if album.Cover !=nil then
+      photo = album.photos.find(album.Cover) 
+    %>
+      <%= link_to image_tag(photo.image.url(:thumb)), album %>
+    <% else %>
+      <%= link_to(album) do %>
+        <div class='no-thumbnail'><p>no thumbnail</p></div>
+      <% end %>
+    <% end %>
+    <%= link_to album.name, album, :class => "thumblink" %>
+      
+  </div>
 <% end %>
-</table>
+</div>
 
-<br />
 
-<%= link_to 'New Album', new_album_path %>
+

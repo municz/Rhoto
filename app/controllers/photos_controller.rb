@@ -20,6 +20,8 @@ class PhotosController < ApplicationController
     @photo = @album.photos.find(params[:id])
     @comments = @photo.comments.all
     @new_comment = @photo.comments.build
+    @comments_json = @comments.to_json
+    
     if user_signed_in? then @new_comment.user = current_user.name end
     respond_to do |format|
       format.html # show.html.erb
