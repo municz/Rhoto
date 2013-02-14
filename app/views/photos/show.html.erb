@@ -13,17 +13,17 @@
  
 <hr>
  
-<h2>Comments</h2>
+<h2 data-bind="visible: comments().length > 0 ">Comments</h2>
 
 <span data-bind="foreach: comments, visible: comments().length > 0">
     
+    <div class='comment'>
         <span data-bind="text: title" class='title'></span><span class='user' data-bind="text: user"></span><br>
         <p data-bind="text: content"></p>
-        <br>
         <% if user_signed_in? then %>
           <a href="#" data-bind="click: $parent.destroyComment" class='text-info'>Destroy</a>
         <% end %>
-        <hr>
+    </div>
      
 </span>
 

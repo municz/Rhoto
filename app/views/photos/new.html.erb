@@ -1,5 +1,8 @@
-<h1>New photo</h1>
+<h1>Upload new photo </h1>
+
+<p><strong>Album: </strong> <i><%= @album.name %></i></p>
+<br>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', album_path(@album) %>
+<%= link_to 'Back without saving', album_path(@album) %>
