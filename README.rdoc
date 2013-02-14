@@ -1,6 +1,6 @@
 == Hello from Rhoto
 
-Rhoto is a web-application programmed in Ruby on Rails with using Bootstrap and KnockoutJS. It's based on MySQL database.
+Rhoto is a web-application programmed in Ruby on Rails with using of Bootstrap and KnockoutJS. It's based on MySQL database.
 
 
 == Getting Started
