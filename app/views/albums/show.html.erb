@@ -24,38 +24,13 @@
         </div>
     <% end %>
 
-    <%= image_tag photo.image.url(:thumb) %>
+    <%= link_to image_tag(photo.image.url(:thumb)), album_photo_path(@album,photo) %>
     <%= link_to photo.title, album_photo_path(@album,photo), :class => "thumblink" %>
       
   </div>
 <% end %>
 </div>
 
-
-
-
-
-
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    
-    <th></th>
-    <th></th>
-  </tr>
-<% @photos.each do |photo| %>
-	<tr>
-		<td><%= photo.title %></td>
-		<td><%= photo.description %></td>
-		
-		<td><%= link_to 'detail', album_photo_path(@album, photo) %></td>
-		<% if user_signed_in? then %>
-    <td><%= link_to 'Destroy', album_photo_path(@album,photo), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-    <% end %>
-	</tr>
-<% end %>
 
 
 <%= link_to 'Back', albums_path %>

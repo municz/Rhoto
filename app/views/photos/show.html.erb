@@ -2,56 +2,31 @@
 <p id="notice"><%= notice %></p>
 <input type="hidden" id="album_id" value="<%= params[:album_id]%>">
 <input type="hidden" id="photo_id" value="<%= params[:id]%>">
-<p>
-  <b>Title:</b>
-  <%= @photo.title %>
-</p>
+  <h1><%= @photo.title %></h1>
+
+
+  <%= image_tag @photo.image.url(:large), :class => "img-polaroid" %>
 
 <p>
-  <b>Description:</b>
   <%= @photo.description %>
 </p>
-
-<p>
-  <b>image address:</b>
-  <%= @photo.image_file_name %>
-</p>
-
-<p>
-  <b>image:</b>
-  <%= image_tag @photo.image.url(:large) %>
-</p>
-
+ 
 <hr>
  
-<h2>Komentáře</h2>
-
+<h2>Comments</h2>
 
 <span data-bind="foreach: comments, visible: comments().length > 0">
     
-        <strong data-bind="text: user"></strong>
-        <span data-bind="text: title"></span>
+        <span data-bind="text: title" class='title'></span><span class='user' data-bind="text: user"></span><br>
         <p data-bind="text: content"></p>
-        <% if user_signed_in? then %>
-          <p><a href="#" data-bind="click: $parent.destroyComment" >Destroy</a></p>
-        <% end %>
         <br>
+        <% if user_signed_in? then %>
+          <a href="#" data-bind="click: $parent.destroyComment" class='text-info'>Destroy</a>
+        <% end %>
+        <hr>
      
 </span>
 
-<!--
-<% @comments.each do |comment| %>
-  <p><strong><%= comment.title %></strong><br>
-    <%= comment.created_at.to_s %> napsal <strong><%= comment.user %></strong>:
-    <q><%= comment.content %></q>
-  </p>
-
-<% 
- end %>
-
- /-->
-
-<hr>
 
 
 
@@ -61,7 +36,7 @@
     <p id="error_explanation"><%= error %></p>
   <% end %>
 <% end %>
-<h2>Přidat komentář:</h2>
+<h2>Add comment</h2>
 
 <%= render 'photos/commentForm' %>
 
