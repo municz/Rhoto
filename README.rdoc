@@ -30,5 +30,5 @@ development/test/production:
 
 5. remove ", :registerable" from app/models/user.rb
 
-6. remove registration button from homepage with removing lines in app/views/home.index.html.erb
+6. remove registration button from homepage by removing lines in app/views/home.index.html.erb
 
