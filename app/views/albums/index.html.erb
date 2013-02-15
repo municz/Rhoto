@@ -17,8 +17,9 @@
     <% end %>
 
     <%  
-    if album.Cover !=nil then
+    if album.Cover !=nil && album.photos.exists?(album.Cover) then
       photo = album.photos.find(album.Cover) 
+ 
     %>
       <%= link_to image_tag(photo.image.url(:thumb)), album %>
     <% else %>

@@ -87,6 +87,10 @@ class PhotosController < ApplicationController
   def destroy
     @album = Album.find(params[:album_id])
     @photo = @album.photos.find(params[:id])
+    @comments = @photo.comments.all
+    @comments.each do |cmt|
+      cmt.destroy
+    end
     @photo.destroy
 
     respond_to do |format|

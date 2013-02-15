@@ -76,6 +76,18 @@ class AlbumsController < ApplicationController
   # DELETE /albums/1.json
   def destroy
     @album = Album.find(params[:id])
+    @photos = @album.photos.all
+    
+    @photos.each do |each_photo|
+    
+      each_photo.comments.each do |cmt|
+        cmt.destroy
+      end
+
+      each_photo.destroy
+    end
+
+
     @album.destroy
 
     respond_to do |format|
